@@ -32,7 +32,6 @@ app.use(pinoHTTP({ logger }));
 // API routes
 app.use(`${config.api.prefix}`, routes());
 
-// app.use('/api/v1', routes());
 // Handle 404 route
 app.use((request, response, next) =>
   next(errorResponder(errorTypes.ROUTE_NOT_FOUND, 'Route not found'))
