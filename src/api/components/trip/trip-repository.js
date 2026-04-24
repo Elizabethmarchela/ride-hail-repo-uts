@@ -44,6 +44,3 @@ module.exports = {
   completeTrip,
 };
 
-  completeTrip
-};
-

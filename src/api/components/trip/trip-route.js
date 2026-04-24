@@ -12,7 +12,6 @@ const tripController = require('./trip-controller');
 const route = express.Router();
 
 module.exports = (app) => {
-535250151_Fuihung
   app.use('/trip', route);
 
   route.post('/pickup', tripController.pickup);
