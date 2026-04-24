@@ -5,8 +5,8 @@ const authRepository = require('./auth-repository');
 const { hashPassword, passwordMatched } = require('../../../utils/password');
 
 async function registerUser(userData) {
-  const existingUser = await Users.findOne({ 
-    email: userData.email 
+  const existingUser = await Users.findOne({
+    email: userData.email,
   });
   if (existingUser) throw new Error('Email sudah digunakan');
 
