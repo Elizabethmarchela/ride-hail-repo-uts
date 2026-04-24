@@ -30,7 +30,27 @@ async function rating(req, res) {
   }
 }
 
+async function validateVoucher(req, res) {
+  try {
+    const { code } = req.body;
+
+    const result = await service.validateVoucher(code);
+
+    res.status(200).json({
+      success: true,
+      message: 'Voucher is valid and ready to use',
+      data: result,
+    });
+  } catch (err) {
+    res.status(400).json({ 
+      success: false,
+      message: err.message 
+    });
+  }
+}
+
 module.exports = {
   finalPayment,
   rating,
+  validateVoucher
 };

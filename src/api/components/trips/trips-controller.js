@@ -1,11 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 const tripsService = require('./trips-service');
 const { errorResponder, errorTypes } = require('../../../core/errors');
+const { fa } = require('@faker-js/faker');
 
 async function pickup(request, response, next) {
   try {
-    const { passengerId, passengerName, pickupLocation, destination } =
-      request.body;
+    const { passengerId, passengerName, pickupLocation, destination } = request.body;
 
     if (!passengerId) {
       throw errorResponder(
@@ -32,12 +32,7 @@ async function pickup(request, response, next) {
       );
     }
 
-    const trip = await tripsService.pickup(
-      passengerId,
-      passengerName,
-      pickupLocation,
-      destination
-    );
+    const trip = await tripsService.pickup(passengerId, passengerName, pickupLocation, destination);
 
     return response.status(201).json({
       success: true,
@@ -45,6 +40,7 @@ async function pickup(request, response, next) {
       data: {
         tripId: trip._id,
         status: trip.status,
+        fare: trip.fare,
         pickupLocation: trip.pickupLocation,
         destination: trip.destination,
         pickupTime: trip.pickupTime,
@@ -190,9 +186,32 @@ async function dropoff(request, response, next) {
   }
 }
 
+async function calculateFare(request, response, next) {
+  try {
+    const { pickupLocation, destination } = request.body;
+
+    if (!pickupLocation) {
+      throw errorResponder(errorTypes.VALIDATION_ERROR, 'Pickup location is required');
+    }
+    if (!destination) {
+      throw errorResponder(errorTypes.VALIDATION_ERROR, 'Destination is required');
+    }
+
+    const fareDetails = await tripsService.calculateFare(pickupLocation, destination);
+
+    return response.status(200).json({
+      success: true,
+      message: 'Fare calculated successfully',
+      data: fareDetails
+    });
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   pickup,
   assignDriver,
   getOngoingTrip,
-  dropoff,
+  dropoff
 };
