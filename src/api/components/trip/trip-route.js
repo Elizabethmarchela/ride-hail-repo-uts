@@ -1,17 +1,17 @@
 const express = require('express');
 
-const tripsController = require('./trips-controller');
+const tripController = require('./trip-controller');
 
 const route = express.Router();
 
 module.exports = (app) => {
-  app.use('/trips', route);
+  app.use('/trip', route);
 
-  route.post('/pickup', tripsController.pickup);
+  route.post('/pickup', tripController.pickup);
 
-  route.put('/:tripId/assign-driver', tripsController.assignDriver);
+  route.put('/:tripId/assign-driver', tripController.assignDriver);
 
-  route.get('/ongoing/:passengerId', tripsController.getOngoingTrip);
+  route.get('/ongoing/:passengerId', tripController.getOngoingTrip);
 
-  route.put('/:tripId/dropoff', tripsController.dropoff);
+  route.put('/:tripId/dropoff', tripController.dropoff);
 };
