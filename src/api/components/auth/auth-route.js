@@ -5,7 +5,6 @@ const { authMiddleware } = require('../../middlewares');
 const route = express.Router();
 
 module.exports = (app) => {
-
   app.post('/auth/register', authController.register);
   app.post('/auth/login', authController.login);
   app.get('/auth/getProfile', authMiddleware, authController.getProfile);
