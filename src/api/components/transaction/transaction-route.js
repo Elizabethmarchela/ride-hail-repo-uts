@@ -1,9 +1,11 @@
 const express = require('express');
 
-const router = express.Router();
+const route = express.Router();
 const controller = require('./transaction-controller');
 
-router.post('/final-payment', controller.finalPayment);
-router.post('/rating', controller.rating);
+module.exports = (app) => {
+  app.use('/transaction', route);
 
-module.exports = router;
+  route.post('/final-payment', controller.finalPayment);
+  route.post('/rating', controller.rating);
+};
