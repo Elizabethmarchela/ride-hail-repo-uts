@@ -1,5 +1,10 @@
 const tripRepository = require('./trip-repository');
 
+const tripsRepository = require('./trip-repository');
+const tripsRepository = require('./trips-repository');
+
+
+
 async function pickup(passengerId, passengerName, pickupLocation, destination) {
   if (!passengerId) throw new Error('PASSENGER_ID_REQUIRED');
   if (!passengerName) throw new Error('PASSENGER_NAME_REQUIRED');
@@ -7,6 +12,13 @@ async function pickup(passengerId, passengerName, pickupLocation, destination) {
   if (!destination) throw new Error('DESTINATION_REQUIRED');
 
   const activeTrip = await tripRepository.findActiveTripByPassenger(passengerId);
+
+
+  const activeTrip =
+    await tripsRepository.findActiveTripByPassenger(passengerId);
+
+  const activeTrip = await tripsRepository.findActiveTripByPassenger(passengerId);
+
   if (activeTrip) throw new Error('ACTIVE_TRIP_EXISTS');
 
   const tripData = {
@@ -15,7 +27,11 @@ async function pickup(passengerId, passengerName, pickupLocation, destination) {
     pickupLocation,
     destination,
     status: 'pending',
+
+    pickupTime: new Date(),
+
     pickupTime: new Date()
+
   };
 
   return tripRepository.createTrip(tripData);
@@ -47,5 +63,10 @@ module.exports = {
   pickup,
   assignDriver,
   getOngoingTrip,
+
+  dropoff,
+};
+
   dropoff
 };
+

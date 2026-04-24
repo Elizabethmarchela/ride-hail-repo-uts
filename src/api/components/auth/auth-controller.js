@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 const authService = require('./auth-service');
 const { errorResponder, errorTypes } = require('../../../core/errors');
@@ -21,7 +22,7 @@ async function login(request, response, next) {
 }
 async function getProfile(req, res) {
   try {
-    const user = req.user;
+    const { user } = req;
     res.status(200).json({
       message: 'Berhasil mengambil data profil',
       data: user,
@@ -80,7 +81,6 @@ async function updateProfile(req, res) {
       },
     });
   } catch (error) {
-    console.error('ERROR UPDATE PROFILE:', error);
     return res.status(500).json({
       message: 'Gagal update profil',
       error: error.message,
