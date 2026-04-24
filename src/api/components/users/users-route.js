@@ -7,24 +7,21 @@ const route = express.Router();
 module.exports = (app) => {
   app.use('/users', route);
 
-    //Get list of users
+  // Get list of users
   route.get('/', usersController.getUsers);
 
-    //Create a new user
+  // Create a new user
   route.post('/', usersController.createUser);
 
-    //Get user detail
-    route.get('/:id', usersController.getUser);
+  // Get user detail
+  route.get('/:id', usersController.getUser);
 
-    //Update user
-    route.put('/:id', usersController.updateUser);
+  // Update user
+  route.put('/:id', usersController.updateUser);
 
-    //Change password
-    oute.put('/:id/change-password', usersController.changePassword);
+  // Change password
+  route.put('/:id/change-password', usersController.changePassword);
 
-    //Delete user
-    route.delete('/:id', usersController.deleteUser);
-
-  route.post('/createOrder', usersController.createOrder);
-  route.post('/coordinates', usersController.coordinates);
+  // Delete user
+  route.delete('/:id', usersController.deleteUser);
 };

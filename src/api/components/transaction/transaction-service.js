@@ -32,8 +32,7 @@ async function giveRating(orderId, rating, review) {
   const totalTrips = (driver.totalTrips || 0) + 1;
   const currentRating = driver.rating || 5;
 
-  const newRating =
-    (currentRating * (totalTrips - 1) + rating) / totalTrips;
+  const newRating = (currentRating * (totalTrips - 1) + rating) / totalTrips;
 
   await repo.updateDriver(order.driverId, {
     rating: newRating,

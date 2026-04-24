@@ -17,13 +17,9 @@ async function finalPayment(req, res) {
 
 async function rating(req, res) {
   try {
-    const { orderId, rating, review } = req.body;
+    const { orderId, review } = req.body;
 
-    const result = await service.giveRating(
-      orderId,
-      rating,
-      review
-    );
+    const result = await service.giveRating(orderId, review);
 
     res.json({
       message: 'Rating submitted',
