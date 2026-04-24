@@ -14,4 +14,6 @@ module.exports = (app) => {
   route.get('/ongoing/:passengerId', tripsController.getOngoingTrip);
 
   route.put('/:tripId/dropoff', tripsController.dropoff);
+
+  route.post('/calculate-fare', tripsController.calculateFare);
 };

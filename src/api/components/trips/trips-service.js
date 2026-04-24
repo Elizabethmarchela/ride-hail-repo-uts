@@ -5,6 +5,7 @@ async function pickup(passengerId, passengerName, pickupLocation, destination) {
   if (!passengerName) throw new Error('PASSENGER_NAME_REQUIRED');
   if (!pickupLocation) throw new Error('PICKUP_LOCATION_REQUIRED');
   if (!destination) throw new Error('DESTINATION_REQUIRED');
+  if (!fare) throw new Error('FARE_REQUIRED');
 
   const activeTrip = await tripsRepository.findActiveTripByPassenger(passengerId);
   if (activeTrip) throw new Error('ACTIVE_TRIP_EXISTS');
@@ -14,6 +15,7 @@ async function pickup(passengerId, passengerName, pickupLocation, destination) {
     passengerName,
     pickupLocation,
     destination,
+    fare,
     status: 'pending',
     pickupTime: new Date()
   };
@@ -43,9 +45,29 @@ async function dropoff(tripId) {
   return tripsRepository.completeTrip(tripId, new Date());
 }
 
+async function calculateFare(pickupLocation, destination) {
+  if (!pickupLocation) throw new Error('PICKUP_LOCATION_REQUIRED');
+  if (!destination) throw new Error('DESTINATION_REQUIRED');
+
+  const mockDistanceKm = Math.floor(Math.random() * 15) + 1;
+  
+  const baseFare = 10000;
+  const perKmRate = 2500; 
+
+  const estimatedFare = baseFare + (mockDistanceKm * perKmRate);
+
+  return {
+    pickupLocation,
+    destination,
+    distanceKm: mockDistanceKm,
+    estimatedFare
+  };
+}
+
 module.exports = {
   pickup,
   assignDriver,
   getOngoingTrip,
-  dropoff
+  dropoff,
+  calculateFare
 };

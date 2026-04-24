@@ -1,4 +1,4 @@
-const { Orders, Drivers } = require('../../../models');
+const { Orders, Drivers } = require('../models');
 
 async function getOrderById(orderId) {
   return Orders.findById(orderId);
@@ -20,10 +20,16 @@ async function updateDriver(driverId, data) {
   return Drivers.findByIdAndUpdate(driverId, data, { new: true });
 }
 
+async function getVoucherByCode(code) {
+  return Vouchers.findOne({ code });
+}
+
+
 module.exports = {
   getOrderById,
   setFinalFare,
   setOrderRating,
   getDriverById,
   updateDriver,
+  getVoucherByCode
 };

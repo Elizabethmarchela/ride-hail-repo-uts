@@ -7,6 +7,11 @@ module.exports = (db) =>
       pickupLocation: String,
       destination: String,
       fare: Number,
+      voucherCode: String,
+      discountAmount: { type: Number, default: 0 },
+      finalFare: Number,
+      rating: Number,
+      review: String,
       status: {
         type: String,
         enum: ['pending', 'on_way', 'arrived', 'completed', 'cancelled'],
