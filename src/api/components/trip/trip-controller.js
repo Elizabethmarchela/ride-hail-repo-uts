@@ -1,3 +1,5 @@
+const tripService = require('./trip-service');
+
 
 /* eslint-disable no-underscore-dangle */
 const tripsService = require('./trip-service');
@@ -59,7 +61,7 @@ async function pickup(request, response, next) {
       throw errorResponder(errorTypes.VALIDATION_ERROR, 'Destination is required');
     }
 
-    const trip = await tripsService.pickup(passengerId, passengerName, pickupLocation, destination);
+    const trip = await tripService.pickup(passengerId, passengerName, pickupLocation, destination);
 
     return response.status(201).json({
       success: true,
@@ -119,7 +121,7 @@ async function assignDriver(request, response, next) {
 
     }
 
-    const trip = await tripsService.assignDriver(tripId, driverId, driverName);
+    const trip = await tripService.assignDriver(tripId, driverId, driverName);
 
     return response.status(200).json({
       success: true,
@@ -171,7 +173,7 @@ async function getOngoingTrip(request, response, next) {
 
     }
 
-    const trip = await tripsService.getOngoingTrip(passengerId);
+    const trip = await tripService.getOngoingTrip(passengerId);
 
     if (!trip) {
       return response.status(200).json({
@@ -218,7 +220,7 @@ async function dropoff(request, response, next) {
       throw errorResponder(errorTypes.VALIDATION_ERROR, 'Trip id is required');
     }
 
-    const completedTrip = await tripsService.dropoff(tripId);
+    const completedTrip = await tripService.dropoff(tripId);
 
     return response.status(200).json({
       success: true,
