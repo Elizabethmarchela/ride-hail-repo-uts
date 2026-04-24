@@ -3,7 +3,9 @@ const express = require('express');
 const auth = require('./components/auth/auth-route');
 const books = require('./components/books/books-route');
 const users = require('./components/users/users-route');
-const payment = require('./components/payment/payment-route');
+const trip = require('./components/trip/trip-route');
+const transaction = require('./components/transaction/transaction-route');
+
 
 module.exports = () => {
   const app = express.Router();
@@ -11,7 +13,9 @@ module.exports = () => {
   auth(app);
   books(app);
   users(app);
-  payment(app);
+  trip(app);
+  transaction(app);
+
 
   return app;
 };
