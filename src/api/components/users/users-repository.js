@@ -28,6 +28,13 @@ async function deleteUser(id) {
   return Users.deleteOne({ _id: id });
 }
 
+async function createOrder(data) {
+  return Users.create(data);
+}
+
+async function coordinates(coor_data) {
+  return Users.create(data);
+}
 module.exports = {
   getUsers,
   getUser,
@@ -36,4 +43,6 @@ module.exports = {
   updateUser,
   changePassword,
   deleteUser,
+  createOrder,
+  coordinates
 };
