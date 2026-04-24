@@ -3,7 +3,7 @@ const { Trip } = require('../../../models');
 async function findActiveTripByPassenger(passengerId) {
   return Trip.findOne({
     passengerId,
-    status: { $in: ['pending', 'on_way'] }
+    status: { $in: ['pending', 'on_way'] },
   });
 }
 
@@ -36,5 +36,5 @@ module.exports = {
   createTrip,
   findTripById,
   assignDriverToTrip,
-  completeTrip
+  completeTrip,
 };

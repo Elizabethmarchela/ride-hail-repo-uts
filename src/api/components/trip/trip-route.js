@@ -1,11 +1,12 @@
+/* eslint-disable prettier/prettier */
 const express = require('express');
 
-const tripsController = require('./trips-controller');
+const tripsController = require('./trip-controller');
 
 const route = express.Router();
 
 module.exports = (app) => {
-  app.use('/trips', route);
+  app.use('/trip', route);
 
   route.post('/pickup', tripsController.pickup);
 
