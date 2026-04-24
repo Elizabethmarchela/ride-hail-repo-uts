@@ -6,7 +6,6 @@ const users = require('./components/users/users-route');
 const transaction = require('./components/transaction/transaction-route');
 const trips = require('./components/trips/trips-route');
 
-
 module.exports = () => {
   const app = express.Router();
 

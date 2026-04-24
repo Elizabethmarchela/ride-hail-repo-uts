@@ -1,23 +1,15 @@
-const { Orders, Drivers } = require('../models');
+const { Orders, Drivers } = require('../../../models');
 
 async function getOrderById(orderId) {
   return Orders.findById(orderId);
 }
 
 async function setFinalFare(orderId, finalFare) {
-  return Orders.findByIdAndUpdate(
-    orderId,
-    { finalFare },
-    { new: true }
-  );
+  return Orders.findByIdAndUpdate(orderId, { finalFare }, { new: true });
 }
 
 async function setOrderRating(orderId, rating, review) {
-  return Orders.findByIdAndUpdate(
-    orderId,
-    { rating, review },
-    { new: true }
-  );
+  return Orders.findByIdAndUpdate(orderId, { rating, review }, { new: true });
 }
 
 async function getDriverById(driverId) {

@@ -4,4 +4,3 @@ desktop.ini
 .DS_Store
 .eslintcache
 .npm
-node_modules/.bin/semver

@@ -25,13 +25,6 @@ async function deleteUser(id) {
   return usersRepository.deleteUser(id);
 }
 
-async function createOrder(order_nyak) {
-  return usersRepository.createOrder (order_nyak);
-}
-async function coordinates(coor_data) {
-  return usersRepository.coordinates(coor_data);
-}
-
 module.exports = {
   getUsers,
   getUser,
@@ -39,7 +32,4 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  createOrder,
-  coordinates
-  
 };
